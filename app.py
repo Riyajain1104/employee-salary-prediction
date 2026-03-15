@@ -16,7 +16,7 @@ st.title("💼 Employee Salary Prediction App")
 st.markdown(
 """
 This app predicts whether an employee earns **more than 50K or less than 50K**
-based on age, education, occupation, work hours and experience.
+based on age, education, occupation and work hours.
 """
 )
 
