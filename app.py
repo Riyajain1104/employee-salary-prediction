@@ -42,8 +42,6 @@ occupation = st.sidebar.selectbox(
 
 hours_per_week = st.sidebar.slider("Hours per Week", 1, 80, 40)
 
-experience = st.sidebar.slider("Years of Experience", 0, 40, 5)
-
 # -----------------------
 # Convert strings to numbers
 # -----------------------
@@ -82,8 +80,7 @@ input_df = pd.DataFrame({
     'age':[age],
     'education':[education],
     'occupation':[occupation],
-    'hours-per-week':[hours_per_week],
-    'experience':[experience]
+    'hours-per-week':[hours_per_week]
 })
 
 st.subheader("📊 Input Data")
