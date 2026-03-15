@@ -93,8 +93,6 @@ st.write(input_df)
 # Scaling
 # -----------------------
 
-scaler = StandardScaler()
-input_scaled = scaler.fit_transform(input_df)
 
 # -----------------------
 # Prediction
@@ -102,7 +100,12 @@ input_scaled = scaler.fit_transform(input_df)
 
 if st.button("Predict Salary"):
 
-    prediction = model.predict(input_scaled)
+    prediction = model.predict(input_df)
+
+    # Get probability
+    probability = model.predict_proba(input_df)
+
+    confidence = round(max(probability[0]) * 100, 2)
 
     result = ">50K" if prediction[0] == 1 else "<=50K"
 
@@ -112,3 +115,5 @@ if st.button("Predict Salary"):
         st.success("💰 The employee is likely to earn **more than 50K**.")
     else:
         st.warning("📉 The employee is likely to earn **50K or less**.")
+
+    st.info(f"📊 Confidence: **{confidence}%**")
