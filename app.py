@@ -16,79 +16,90 @@ st.title("💼 Employee Salary Prediction App")
 st.markdown(
 """
 This app predicts whether an employee earns **more than 50K or less than 50K**
-based on age, education, occupation and work hours.
+based on age, educational-num, occupation and work hours.
 """
 )
 
 # Sidebar
 st.sidebar.header("Enter Employee Details")
-
-
-age = st.sidebar.slider("Age", 18, 65, 30)
-
+age = st.sidebar.slider("Age",18,65,30)
 education = st.sidebar.selectbox(
-    "Education Level",
-    ["Bachelors","Masters","PhD","HS-grad","Assoc","Some-college"]
+"Education Level",
+["Preschool","1st-4th","5th-6th","7th-8th","9th","10th","11th","12th",
+"HS-grad","Some-college","Assoc-voc","Assoc-acdm",
+"Bachelors","Masters","Prof-school","Doctorate"]
 )
 
 occupation = st.sidebar.selectbox(
-    "Occupation",
-    ["Tech-support","Craft-repair","Other-service","Sales",
-     "Exec-managerial","Prof-specialty","Handlers-cleaners",
-     "Machine-op-inspct","Adm-clerical","Farming-fishing",
-     "Transport-moving","Priv-house-serv","Protective-serv",
-     "Armed-Forces"]
+"Occupation",
+["Tech-support","Craft-repair","Other-service","Sales",
+"Exec-managerial","Prof-specialty","Handlers-cleaners",
+"Machine-op-inspct","Adm-clerical","Farming-fishing",
+"Transport-moving","Priv-house-serv","Protective-serv","Armed-Forces"]
 )
 
-hours_per_week = st.sidebar.slider("Hours per Week", 1, 80, 40)
+hours_per_week = st.sidebar.slider("Hours per Week",1,80,40)
 
-# -----------------------
-# Convert strings to numbers
-# -----------------------
-
+# -----------------------------
+# Education Mapping
+# -----------------------------
 education_map = {
-    "HS-grad":0,
-    "Some-college":1,
-    "Assoc":2,
-    "Bachelors":3,
-    "Masters":4,
-    "PhD":5
+"Preschool":1,
+"1st-4th":2,
+"5th-6th":3,
+"7th-8th":4,
+"9th":5,
+"10th":6,
+"11th":7,
+"12th":8,
+"HS-grad":9,
+"Some-college":10,
+"Assoc-voc":11,
+"Assoc-acdm":12,
+"Bachelors":13,
+"Masters":14,
+"Prof-school":15,
+"Doctorate":16
 }
 
+education_num = education_map[education]
+
+# -----------------------------
+# Occupation Mapping
+# -----------------------------
 occupation_map = {
-    "Tech-support":0,
-    "Craft-repair":1,
-    "Other-service":2,
-    "Sales":3,
-    "Exec-managerial":4,
-    "Prof-specialty":5,
-    "Handlers-cleaners":6,
-    "Machine-op-inspct":7,
-    "Adm-clerical":8,
-    "Farming-fishing":9,
-    "Transport-moving":10,
-    "Priv-house-serv":11,
-    "Protective-serv":12,
-    "Armed-Forces":13
+"Tech-support":0,
+"Craft-repair":1,
+"Other-service":2,
+"Sales":3,
+"Exec-managerial":4,
+"Prof-specialty":5,
+"Handlers-cleaners":6,
+"Machine-op-inspct":7,
+"Adm-clerical":8,
+"Farming-fishing":9,
+"Transport-moving":10,
+"Priv-house-serv":11,
+"Protective-serv":12,
+"Armed-Forces":13
 }
 
-education = education_map[education]
-occupation = occupation_map[occupation]
+occupation_num = occupation_map[occupation]
 
-# Input dataframe
+# -----------------------------
+# Input DataFrame
+# -----------------------------
 input_df = pd.DataFrame({
-    'age':[age],
-    'education':[education],
-    'occupation':[occupation],
-    'hours-per-week':[hours_per_week]
+"age":[age],
+"educational-num":[education_num],
+"occupation":[occupation_num],
+"hours-per-week":[hours_per_week]
 })
 
-st.subheader("📊 Input Data")
+st.subheader("Input Data")
 st.write(input_df)
 
-# -----------------------
-# Scaling
-# -----------------------
+
 
 
 # -----------------------
