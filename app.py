@@ -16,6 +16,9 @@ except Exception as e:
     st.error(f"Error loading model: {e}")
     st.stop()
 
+st.write("App Started Successfully")
+st.write(type(model))
+
 # Title
 st.title("💼 Employee Salary Prediction App")
 
