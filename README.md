@@ -10,7 +10,7 @@ The application is built using **Python, Scikit-Learn, and Streamlit**, and is d
 
 You can access the live app here:
 
-🔗 https://employee-salary-predictor-riya.streamlit.app
+🔗 https://employee-salary-prediction-riyaa.streamlit.app/
 
 ---
 
