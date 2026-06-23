@@ -1,24 +1,28 @@
 import streamlit as st
 import pandas as pd
 import joblib
-from sklearn.preprocessing import StandardScaler
 
-st.set_page_config(layout="wide")
+# Page configuration (must be first Streamlit command)
+st.set_page_config(
+    page_title="Employee Salary Predictor",
+    page_icon="💼",
+    layout="wide"
+)
+
 # Load trained model
-model = joblib.load("best_model.pkl")
-
-# Page configuration
-st.set_page_config(page_title="Employee Salary Predictor", page_icon="💼")
+try:
+    model = joblib.load("best_model.pkl")
+except Exception as e:
+    st.error(f"Error loading model: {e}")
+    st.stop()
 
 # Title
 st.title("💼 Employee Salary Prediction App")
 
-st.markdown(
-"""
+st.markdown("""
 This app predicts whether an employee earns **more than 50K or less than 50K**
 based on age, educational-num, occupation and work hours.
-"""
-)
+""")
 
 # Sidebar
 st.sidebar.header("Enter Employee Details")
